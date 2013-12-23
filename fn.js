@@ -14,7 +14,7 @@ module.exports.getCssProperties = function () {
 		if (data.hasOwnProperty(property)) {
 			property = property.replace(prefix, '');
 
-			if (property.substring(0, 3) !== 'ms-') {
+			if (property.substr(0, 3) !== 'ms-') {
 				properties.push(property);
 			}
 		}
