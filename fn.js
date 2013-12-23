@@ -1,4 +1,7 @@
+'use strict';
+
 var fs = require('fs');
+var autoprefixer = require('autoprefixer');
 
 module.exports.getCssProperties = function () {
 	var prefix = 'css/properties/';
@@ -7,7 +10,7 @@ module.exports.getCssProperties = function () {
 	data = JSON.parse(data).query.results;
 	var properties = [];
 
-	for (property in data) {
+	for (var property in data) {
 		if (data.hasOwnProperty(property)) {
 			property = property.replace(prefix, '');
 
@@ -24,20 +27,43 @@ module.exports.generateCssString = function (properties) {
 	var result = false;
 
 	if (properties.push) {
-		result = '.class{';
+		// Array
+		result = '.class{\n';
 
 		for (var i = 0; i < properties.length; i++) {
-			result += properties[i].toString() + ': #c22;';
+			result += '\t' + properties[i].toString() + ': #c22;\n';
 		}
 
 		result += '}';
-	} else {
-		var result;
+	} else if (properties.length) {
+		// String
+		result = '.class{\n';
 
-		result = '.class{' + properties.toString() + ': #c22;' + '}';
+		result += '\t' + properties.toString() + ': #c22;\n';
+
+		result += '}';
+	} else {
+		// Object
+		result = '.class{\n';
+
+		for (var property in properties) {
+			if (properties.hasOwnProperty(property)) {
+				result += '\t' + property.toString() + ': ' + properties[property] + ';\n';
+			}
+		}
+
+		result += '}';
 	}
 
 	if (result) {
 		return result;
 	}
+}
+
+module.exports.getPrefixedCss = function (css, options) {
+	var result;
+
+	result = autoprefixer(options || ["last 2 version"]).process(css).css;
+
+	return result;
 }

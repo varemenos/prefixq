@@ -1,7 +1,13 @@
+'use strict';
+
 var fn = require('./fn');
 var express = require('express');
 
 var properties = fn.getCssProperties();
 
-// console.log(properties);
-console.log(fn.generateCssString(['align', 'z-index']));
+var options = ["last 2 version"];
+var css = fn.generateCssString(['transition', 'transform', 'animation']);
+
+var result = fn.getPrefixedCss(css, options);
+
+console.log(result);
