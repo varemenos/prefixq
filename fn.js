@@ -23,7 +23,7 @@ module.exports.getCssProperties = function () {
 	return properties;
 }
 
-module.exports.generateCssString = function (properties) {
+var generateCssString = function (properties) {
 	var result = false;
 
 	if (properties.push) {
@@ -62,6 +62,8 @@ module.exports.generateCssString = function (properties) {
 
 module.exports.getPrefixedCss = function (css, options) {
 	var result;
+
+	css = generateCssString(css);
 
 	result = autoprefixer(options || ["last 2 version"]).process(css).css;
 

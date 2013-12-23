@@ -6,8 +6,7 @@ var express = require('express');
 var properties = fn.getCssProperties();
 
 var options = ["last 2 version"];
-var css = fn.generateCssString(['transition', 'transform', 'animation']);
 
-var result = fn.getPrefixedCss(css, options);
+var result = fn.getPrefixedCss(['transition', 'transform', 'animation'], options);
 
 console.log(result);
