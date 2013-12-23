@@ -1,7 +1,7 @@
 {
   "name": "prefixq",
   "version": "0.0.0",
-  "description": "A simple node server that generates prefixes for specified css properties via autoprefixer",
+  "description": "A simple nodejs-based service that generates prefixes for specified css properties via autoprefixer",
   "main": "server.js",
   "dependencies": {
     "autoprefixer": "~1.0.20131222"
