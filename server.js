@@ -1,13 +1,13 @@
 'use strict';
 
-var address = { host: '127.0.0.1', port: 3001 };
-
 var fn = require('./fn');
-var routes = require('./routes');
 
 if(process.argv.length <= 2){
 	// Via HTTP
+	var address = { host: '127.0.0.1', port: 3001 };
+
 	var express = require('express');
+	var routes = require('./routes');
 
 	var app = express();
 
@@ -17,9 +17,10 @@ if(process.argv.length <= 2){
 		app.use(express.urlencoded());
 	});
 
-	app.get('/', routes.index);
-	// app.get('/', func); Use this to return a webapp to get the user to select which properties he wants prefixed
-	// app.get('/api/v1', func); Docs
+	app.get('/', routes.index); //Use this to return a webapp to get the user to select which properties he wants prefixed
+	app.get('/api/', routes.api_default); // Docs for default API
+	app.get('/api/v1', routes.api_v1); // Docs for API v1
+	// app.get('/api/v1/action', api_v1.action); // Action action of API v1
 	app.listen(address.port);
 
 	console.log('Server running at ' + address.host + ':' + address.port);

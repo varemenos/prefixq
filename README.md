@@ -1,7 +1,7 @@
 prefixq
 =======
 
-A simple nodejs-based web service that generates prefixes for specified css properties via autoprefixer
+A simple nodejs-based web service and cli that generates prefixes for the css properties you specify
 
 ---
 
